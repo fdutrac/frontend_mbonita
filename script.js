@@ -35,7 +35,7 @@ const listarClientes = function(){
 
         $("#tabelaClientes").empty();
         clientes.forEach(cliente => {
-            $("#tabelaClientes").append(`<tr><td>${cliente.name}</td><td>${formatarData(cliente.birthday)}</td><td>${formatarTel(cliente.phone)}</td><td>${cliente.address}, CEP: ${formatarCep(cliente.zip_code)}</td><td>${cliente.email}</td><td><button type="button" class="btn btn-danger" onclick="deletarCliente(${cliente.id})">Excluir</button></td><td><button type="button" class="btn btn-primary" onclick="alterarCliente(${cliente.id})">Alterar</button></td></tr>`);
+            $("#tabelaClientes").append(`<tr><td>${cliente.name}</td><td>${formatarData(cliente.birthday)}</td><td>${formatarTel(cliente.phone)}</td><td>${cliente.address}, CEP: ${formatarCep(cliente.zip_code)}, Ref.: ${cliente.address_ref}</td><td>${cliente.email}</td><td><button type="button" class="btn btn-danger" onclick="deletarCliente(${cliente.id})">Excluir</button></td><td><button type="button" class="btn btn-primary" onclick="alterarCliente(${cliente.id})">Alterar</button></td></tr>`);
         });
     }
     request.send();
@@ -130,7 +130,7 @@ function getEndereco(cep){
 
         request.onload = function () {
             var endereco = JSON.parse(this.response);
-            $("#address").val(`${endereco.logradouro} - ${endereco.bairro} - ${endereco.localidade}-${endereco.uf}`);
+            $("#address").val(`${endereco.logradouro}, Nº: , ${endereco.bairro} - ${endereco.localidade}-${endereco.uf}`);
         }
         request.send();
 
